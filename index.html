@@ -1,0 +1,50 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuHumane</title>
+  <!-- mdl -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <!-- css -->
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="default">
+    <div id='mapArea' class='center'>
+      <div class="mainBox" id="myForm">
+        <br>
+        <span class='title'>AuHumane</span>
+        <br>
+        <br>
+        <div>
+          <form action='viewShips.html'>
+            <button type="submit" id='button1' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button">Create Route</button>
+          </form>
+          <form action='viewShips.html'>
+          <button type="submit" id='button1' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button">View Ships</button>
+          </form>
+          <form action='viewShips.html'>
+          <button type="submit" id='button1' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button">View Ports</button>
+          </form>
+          <form action='viewShips.html'>
+          <button type="submit" id='button1' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button bottom">Button Four</button>
+          </form>
+          <br>
+          <div class="top top innerCard">
+            <div class='currentRoute'>Current Route</div>
+            <div class='currentRouteContent'>
+              <div id='origin' class="top">Origin: Location</div>
+              <div id='destination' class="top">Destination: Location</div>
+              <div id='distTravelled' class="top">Distance Travelled: Distance (km)</div>
+              <div id='cost' class="top">Cost: Cost ($)</div><br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="main.js"></script>
