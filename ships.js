@@ -1,7 +1,5 @@
 "use strict";
 
-let shipSelect = document.getElementById("shipSelect");
-
 let shipsArray = [];
 
 function jsonpRequest(url)
@@ -60,10 +58,6 @@ class ship{
 			return(false);
 		}
 	}
-
-  toOutput(){
-    
-  }
 }
 
 
@@ -86,17 +80,32 @@ function newShipTest()
     shipsArray.push(newShip);
     let option = document.createElement("option");
     option.text = newShip.name;
-    shipSelect.add(option);
+    document.getElementById("shipSelect").add(option);
   }
 }
 
 
 function loadShips()
 {
+  let shipSelect = document.getElementById("shipSelect");
   for (let i = 0; i < shipsArray.length; i++)
   {
     let option = document.createElement("option");
     option.text = shipsArray[i].name;
     shipSelect.add(option);
   }
+}
+
+
+function displayShipData()
+{
+  let shipsOutput = document.getElementById('shipsOutput');
+  let listIndex = shipSelect.selectedIndex;
+  shipsOutput.innerHTML = '<b> Ship Name: </b>' + shipsArray[listIndex].name + '<br>';
+  shipsOutput.innerHTML += '<b> Max Speed: </b>' + shipsArray[listIndex].maxSpeed + '<br>';
+  shipsOutput.innerHTML += '<b> Range: </b>' + shipsArray[listIndex].range + '<br>';
+  shipsOutput.innerHTML += '<b> Description: </b>' + shipsArray[listIndex].desc + '<br>';
+  shipsOutput.innerHTML += '<b> Cost: </b>' + shipsArray[listIndex].cost + '<br>';
+  shipsOutput.innerHTML += '<b> Status: </b>' + shipsArray[listIndex].status + '<br>'
+  shipsOutput.innerHTML += '<b> Comments: </b>' + shipsArray[listIndex].comments +'<br>'
 }
