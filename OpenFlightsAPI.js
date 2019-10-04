@@ -46,7 +46,18 @@ class ship{
 
 function newShipTest()
 {
-  let test = new ship('Boat', 5, 5000, 'tanker', 5, 'avalibale','')
+  let newShipName = document.getElementById('newShipName').value;
+  let newMaxSpeed = document.getElementById('newMaxSpeed').value;
+  let newRange = document.getElementById('newRange').value;
+  let newDesc = document.getElementById('newDesc').value;
+  let newCost = document.getElementById('newCost').value;
+  let newStatus = document.getElementById('newStatus').value;
+  let newComments = document.getElementById('newComments').value;
+
+  let test = new ship(newShipName, newMaxSpeed, newRange, newDesc, newCost, newStatus,newComments)
+
+  console.log(test)
+
   shipsTest.push(test)
   let option = document.createElement("option");
   option.text = test.name
