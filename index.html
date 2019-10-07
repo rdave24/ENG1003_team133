@@ -11,7 +11,7 @@
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.css' rel='stylesheet'>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="loadShips()">
   <div class="default">
     <div id='mapArea' class='center'></div>
     <!--ADD SHIP DIV-->
@@ -23,35 +23,35 @@
       <br>
       <button type='button' class="mdl-button mdl-js-button mdl-js-ripple-effect backButtonPopUp" onclick="addShipPopUpClose()"></button>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label halfObj">
-        <input id="surName" class="mdl-textfield__input"></input>
+        <input id="newShipName" class="mdl-textfield__input"></input>
         <label class="mdl-textfield__label" for="surName">Ship Name</label>
       </div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label halfObj">
-        <input id="surName" class="mdl-textfield__input"></input>
+        <input id="newMaxSpeed" class="mdl-textfield__input"></input>
         <label class="mdl-textfield__label" for="surName">Max Speed</label>
       </div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label halfObj">
-        <input id="surName" class="mdl-textfield__input"></input>
-        <label class="mdl-textfield__label" for="surName">Size</label>
+        <input id="newRange" class="mdl-textfield__input"></input>
+        <label class="mdl-textfield__label" for="surName">Range</label>
       </div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label halfObj">
-        <input id="surName" class="mdl-textfield__input"></input>
+        <input id="newDesc" class="mdl-textfield__input"></input>
         <label class="mdl-textfield__label" for="surName">Description</label>
       </div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label halfObj">
-        <input id="surName" class="mdl-textfield__input"></input>
+        <input id="newCost" class="mdl-textfield__input"></input>
         <label class="mdl-textfield__label" for="surName">Cost</label>
       </div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label halfObj">
-        <input id="surName" class="mdl-textfield__input"></input>
+        <input id="newStatus" class="mdl-textfield__input"></input>
         <label class="mdl-textfield__label" for="surName">Status</label>
       </div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label halfObj">
-        <input id="surName" class="mdl-textfield__input"></input>
+        <input id="newComments" class="mdl-textfield__input"></input>
         <label class="mdl-textfield__label" for="surName">Comments</label>
       </div>
 
-      <button type = 'button' id = 'addShip' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button" onclick='addShipPopUpClose()'>Add Ship</button>
+      <button type = 'button' id = 'addShip' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button" onclick='newShip()'>Add Ship</button>
     </div>
     <!--DELETE SHIP DIV-->
     <div id='deleteShip' class='deleteShip'>
@@ -430,7 +430,7 @@
         <div>
           <span class="shipNameLabel">Ship Name</span><br>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <select class="mdl-textfield__input" id = 'portName'>
+            <select class="mdl-textfield__input" id = 'shipSelect' onchange="displayShipData()">
               <option value="shipName">Ship Name</option>
             </select>
           </div>
@@ -440,13 +440,7 @@
           <div class="shipSpecs">
             <div class='currentRoute'>Ship Details</div>
             <div class='currentRouteContent'>
-              <div id='origin' class="top"><b>Name: </b> Melbourne, Australia</div>
-              <div id='destination' class="top"><b>Max Speed:</b> Barcelona, Spain</div>
-              <div id='distTravelled' class="top"><b>Size:</b> 20,514km</div>
-              <div id='cost' class="top"><b>Cost:</b> $1736</div>
-              <div id='cost' class="top"><b>Status:</b> $1736</div>
-              <div id='cost' class="top"><b>Description:</b> $1736</div>
-              <div id='cost' class="top"><b>Comments:</b> $1736</div>
+              <div id="shipsOutput"></div>
             </div>
           </div>
           <button type="button" id='button1' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button" onclick='deleteShipPopUpOpen()'>Delete Ship</button>
