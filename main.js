@@ -88,6 +88,7 @@ function createRoute4PopUpClose() {
 "use strict";
 
 let shipsArray = [];
+let newShipsArray = [];
 
 function jsonpRequest(url)
 {
@@ -95,8 +96,6 @@ function jsonpRequest(url)
     script.src = url + '?callback=accessData';
     document.body.appendChild(script);
 }
-
-jsonpRequest("https://eng1003.monash/api/v1/ships/");
 
 function accessData(shipsData)
 {
@@ -106,7 +105,7 @@ function accessData(shipsData)
   }
 }
 
-class ship{
+class Ship{
 
 	constructor(name, maxSpeed, range, desc, cost, status, comments){
     this._name = name;
@@ -145,9 +144,17 @@ class ship{
 			return(false);
 		}
 	}
+
+	fromData(data){
+		this._name = data._name;
+		this._maxSpeed = data._maxSpeed;
+		this._range = data._range;
+		this._desc = data._desc;
+		this._cost = data._cost;
+		this._status = data._status;
+		this._comments = data._comments;
+	}
 }
-
-
 
 function newShip()
 {
@@ -159,20 +166,19 @@ function newShip()
   let newStatus = document.getElementById('newStatus').value;
   let newComments = document.getElementById('newComments').value;
 
-  let newShip = new ship(newShipName, newMaxSpeed, newRange, newDesc, newCost, newStatus,newComments);
+  let newShip = new Ship(newShipName, newMaxSpeed, newRange, newDesc, newCost, newStatus,newComments);
 
 
   if(newShip.isBlank() == false && newShip.isValid() == true)
   {
-    shipsArray.push(newShip);
+    newShipsArray.push(newShip);
     let option = document.createElement("option");
     option.text = newShip.name;
     document.getElementById("shipSelect").add(option);
   }
-
+	localStorage.setItem("newShipsArray", JSON.stringify(newShipsArray));
 	addShipPopUpClose()
 }
-
 
 function loadShips()
 {
@@ -183,18 +189,44 @@ function loadShips()
     option.text = shipsArray[i].name;
     shipSelect.add(option);
   }
+	for (let i = 0; i < newShipsArray.length; i++)
+  {
+    let option = document.createElement("option");
+    option.text = newShipsArray[i].name;
+    shipSelect.add(option);
+  }
 }
-
 
 function displayShipData()
 {
   let shipsOutput = document.getElementById('shipsOutput');
   let listIndex = shipSelect.selectedIndex - 1;
-  shipsOutput.innerHTML = '<b> Ship Name: </b>' + shipsArray[listIndex].name + '<br>';
-  shipsOutput.innerHTML += '<b> Max Speed: </b>' + shipsArray[listIndex].maxSpeed + '<br>';
-  shipsOutput.innerHTML += '<b> Range: </b>' + shipsArray[listIndex].range + '<br>';
-  shipsOutput.innerHTML += '<b> Description: </b>' + shipsArray[listIndex].desc + '<br>';
-  shipsOutput.innerHTML += '<b> Cost: </b>' + shipsArray[listIndex].cost + '<br>';
-  shipsOutput.innerHTML += '<b> Status: </b>' + shipsArray[listIndex].status + '<br>'
-  shipsOutput.innerHTML += '<b> Comments: </b>' + shipsArray[listIndex].comments +'<br>'
+	if (listIndex<shipsArray.length){
+  	shipsOutput.innerHTML = '<b> Ship Name: </b>' + shipsArray[listIndex].name + '<br>';
+  	shipsOutput.innerHTML += '<b> Max Speed: </b>' + shipsArray[listIndex].maxSpeed + '<br>';
+  	shipsOutput.innerHTML += '<b> Range: </b>' + shipsArray[listIndex].range + '<br>';
+  	shipsOutput.innerHTML += '<b> Description: </b>' + shipsArray[listIndex].desc + '<br>';
+  	shipsOutput.innerHTML += '<b> Cost: </b>' + shipsArray[listIndex].cost + '<br>';
+  	shipsOutput.innerHTML += '<b> Status: </b>' + shipsArray[listIndex].status + '<br>'
+  	shipsOutput.innerHTML += '<b> Comments: </b>' + shipsArray[listIndex].comments +'<br>'
+	}
+	let listIndexNew = listIndex - shipsArray.length;
+	if (listIndex>=shipsArray.length){
+		shipsOutput.innerHTML = '<b> Ship Name: </b>' + newShipsArray[listIndexNew].name + '<br>';
+	  shipsOutput.innerHTML += '<b> Max Speed: </b>' + newShipsArray[listIndexNew].maxSpeed + '<br>';
+	  shipsOutput.innerHTML += '<b> Range: </b>' + newShipsArray[listIndexNew].range + '<br>';
+	  shipsOutput.innerHTML += '<b> Description: </b>' + newShipsArray[listIndexNew].desc + '<br>';
+	  shipsOutput.innerHTML += '<b> Cost: </b>' + newShipsArray[listIndexNew].cost + '<br>';
+	  shipsOutput.innerHTML += '<b> Status: </b>' + newShipsArray[listIndexNew].status + '<br>'
+	  shipsOutput.innerHTML += '<b> Comments: </b>' + newShipsArray[listIndexNew].comments +'<br>'
+	}
+}
+
+jsonpRequest("https://eng1003.monash/api/v1/ships/");
+let localShips = JSON.parse(localStorage.getItem("newShipsArray"));
+for (i = 0; i < localShips.length; i++){
+	let newShip = localShips[i];
+	let newShipClass = new Ship;
+	newShipClass.fromData(newShip);
+	newShipsArray.push(newShipClass);
 }
