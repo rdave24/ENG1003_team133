@@ -26,9 +26,11 @@ function viewPortsPopUpClose() {
 }
 function weatherPopUpOpen() {
   document.getElementById("weather").style.display = "block";
+	document.getElementById("weatherBorder").style.display = "block";
 }
 function weatherPopUpClose() {
   document.getElementById("weather").style.display = "none";
+	document.getElementById("weatherBorder").style.display = "none";
 }
 function deletePortPopUpOpen() {
   document.getElementById("deletePort").style.display = "block";
