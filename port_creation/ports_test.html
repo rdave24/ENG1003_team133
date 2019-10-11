@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Current weather</title>
+    <link rel="stylesheet" href="currentWeather.css">
+    <!-- TODO -->
+    <!-- Link the relavent files from Mapbox API here to initialize the map. Refer the example  linked in the prac-->
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+  <body onload="loadPortCountries()">
+    <div  id='titleArea'><h2>Current weather at your location</h2></div>
+    <!-- Use this div for the map-->
+
+    <div id='mapArea' class='page-block'></div>
+
+    <div id='contentArea'>
+      <!-- two buttons-->
+      <div  id='buttonArea'>
+        <span>
+        <button type="button" name="button" onclick=getLocation()>Get Current Location</button>
+        <button type="button" name="button" onclick=moveToPort()>Move to Port</button>
+        </span>
+      </div>
+      <div id='outputArea'>
+        <select id="portsCountrySelect" onchange="loadPortNames()">
+          <option> Select a Country </option>
+        </select> <br><br>
+
+        <select id="portsNameSelect" onchange="displayPortData()">
+          <option> Select a Port </option>
+        </select> <br><br>
+
+        <div id="portsOutput"></div>
+      </div>
+
+      <div>
+        Port Country
+        <input id="newPortCountry" class="mdl-textfield__input"></input><br>
+        Port Name
+        <input id="newPortName" class="mdl-textfield__input"></input> <br>
+        Latitude
+        <input id="newLat" class="mdl-textfield__input"></input> <br>
+        Longitude
+        <input id="newLng" class="mdl-textfield__input"></input><br>
+        Location Precision
+        <input id="newLocPrecision" class="mdl-textfield__input"></input><br>
+        Size
+        <input id="newSize" class="mdl-textfield__input"></input><br>
+        Type
+        <input id="newType" class="mdl-textfield__input"></input><br><br>
+        <button type="button" onclick="newPort()"> New Ship </button><br><br>
+      </div>
+
+
+  </body>
+  <script type="text/javascript" src='ports_test.js'>
+
+  </script>
+</html>
