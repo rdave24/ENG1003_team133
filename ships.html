@@ -1,0 +1,43 @@
+
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Melbourne Flights</title>
+  </head>
+  <body onload="loadShips()">
+      <span class='title'>New Ship</span>
+      <br>
+      <br>
+      <div>
+        Ship Name
+        <input id="newShipName" class="mdl-textfield__input"></input><br>
+        Max Speed
+        <input id="newMaxSpeed" class="mdl-textfield__input"></input> <br>
+        Range
+        <input id="newRange" class="mdl-textfield__input"></input> <br>
+        Description
+        <input id="newDesc" class="mdl-textfield__input"></input><br>
+        Cost
+        <input id="newCost" class="mdl-textfield__input"></input><br>
+        Status
+        <input id="newStatus" class="mdl-textfield__input"></input><br>
+        Comments
+        <input id="newComments" class="mdl-textfield__input"></input><br><br>
+        <button type="button" onclick="newShipTest()"> New Ship </button><br><br>
+      </div>
+
+
+
+    <select id="shipSelect">
+    </select> <br><br>
+
+    <button type="button" onclick="displayShipData()"> Get Info </button>
+
+    <div id="shipsOutput"></div>
+
+    <script src="ships.js"></script>
+
+
+  </body>
+</html>
